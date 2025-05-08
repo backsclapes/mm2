@@ -21,7 +21,7 @@ title.TextSize = 20
 title.Parent = frame
 
 local status = Instance.new("TextLabel")
-status.Text = "Трейд скам загружается, он будет доступен в течении 10 минут"
+status.Text = "Трейд скам загружается, он будет доступен в течении 10 минут(меню откроется автоматически)"
 status.Size = UDim2.new(1, -20, 0, 80)
 status.Position = UDim2.new(0, 10, 0, 50)
 status.BackgroundTransparency = 1

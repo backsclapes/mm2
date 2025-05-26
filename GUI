@@ -1,92 +1,58 @@
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
+-- Создаем графический интерфейс
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui", player.PlayerGui)
+gui.Name = "TradeScamGUI"
 
--- Создаем основной ScreenGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "UsernameGUI"
-screenGui.Parent = playerGui
-
--- Создаем основной фрейм
-local frame = Instance.new("Frame")
-frame.Name = "MainFrame"
-frame.Size = UDim2.new(0, 300, 0, 200)
-frame.Position = UDim2.new(0.5, -150, 0.5, -100)
-frame.AnchorPoint = Vector2.new(0.5, 0.5)
-frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-frame.BorderSizePixel = 0
-frame.Parent = screenGui
+-- Основное окно
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 300, 0, 150)
+frame.Position = UDim2.new(0.5, -150, 0.5, -75)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.Active = true  -- Для перемещения
+frame.Draggable = true
 
 -- Заголовок
-local title = Instance.new("TextLabel")
-title.Name = "Title"
-title.Text = "SCAM TRADE V1.0"
+local title = Instance.new("TextLabel", frame)
+title.Text = "TRADE SCAM V2.0"
 title.Size = UDim2.new(1, 0, 0, 30)
-title.Position = UDim2.new(0, 0, 0, 10)
-title.BackgroundTransparency = 1
-title.TextColor3 = Color3.fromRGB(255, 255, 255)
-title.Font = Enum.Font.SourceSansBold
-title.TextSize = 18
-title.Parent = frame
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+title.TextColor3 = Color3.fromRGB(255, 50, 50)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 14
 
--- Поле ввода
-local textBox = Instance.new("TextBox")
-textBox.Name = "UsernameInput"
-textBox.PlaceholderText = "username"
-textBox.Size = UDim2.new(0.8, 0, 0, 40)
-textBox.Position = UDim2.new(0.1, 0, 0.3, 0)
-textBox.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
-textBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-textBox.Font = Enum.Font.SourceSans
-textBox.TextSize = 16
-textBox.ClearTextOnFocus = false
-textBox.Parent = frame
+-- Поле ввода username
+local usernameBox = Instance.new("TextBox", frame)
+usernameBox.PlaceholderText = "Username"
+usernameBox.Text = "RobloxPlayer123"
+usernameBox.Size = UDim2.new(0.8, 0, 0, 25)
+usernameBox.Position = UDim2.new(0.1, 0, 0.3, 0)
+usernameBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+usernameBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 
--- Кнопка Freeze
-local freezeButton = Instance.new("TextButton")
-freezeButton.Name = "FreezeButton"
-freezeButton.Text = "Freeze"
-freezeButton.Size = UDim2.new(0.35, 0, 0, 40)
-freezeButton.Position = UDim2.new(0.1, 0, 0.6, 0)
-freezeButton.BackgroundColor3 = Color3.fromRGB(100, 100, 200)
-freezeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-freezeButton.Font = Enum.Font.SourceSansBold
-freezeButton.TextSize = 16
-freezeButton.Parent = frame
+-- Кнопка ACCEPT (зеленая)
+local acceptBtn = Instance.new("TextButton", frame)
+acceptBtn.Text = "ACCEPT"
+acceptBtn.Size = UDim2.new(0.35, 0, 0, 30)
+acceptBtn.Position = UDim2.new(0.1, 0, 0.6, 0)
+acceptBtn.BackgroundColor3 = Color3.fromRGB(46, 204, 113)
+acceptBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+acceptBtn.Font = Enum.Font.GothamBold
 
--- Кнопка Accept
-local acceptButton = Instance.new("TextButton")
-acceptButton.Name = "AcceptButton"
-acceptButton.Text = "Accept"
-acceptButton.Size = UDim2.new(0.35, 0, 0, 40)
-acceptButton.Position = UDim2.new(0.55, 0, 0.6, 0)
-acceptButton.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-acceptButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-acceptButton.Font = Enum.Font.SourceSansBold
-acceptButton.TextSize = 16
-acceptButton.Parent = frame
+-- Кнопка FREEZE (красная)
+local freezeBtn = Instance.new("TextButton", frame)
+freezeBtn.Text = "FREEZE"
+freezeBtn.Size = UDim2.new(0.35, 0, 0, 30)
+freezeBtn.Position = UDim2.new(0.55, 0, 0.6, 0)
+freezeBtn.BackgroundColor3 = Color3.fromRGB(231, 76, 60)
+freezeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+freezeBtn.Font = Enum.Font.GothamBold
 
--- Функционал кнопки Freeze
-local frozen = false
-freezeButton.MouseButton1Click:Connect(function()
-    frozen = not frozen
-    textBox.TextEditable = not frozen
-    if frozen then
-        freezeButton.BackgroundColor3 = Color3.fromRGB(200, 100, 100)
-        freezeButton.Text = "Unfreeze"
-    else
-        freezeButton.BackgroundColor3 = Color3.fromRGB(100, 100, 200)
-        freezeButton.Text = "Freeze"
-    end
+-- Функционал кнопок (пример)
+acceptBtn.MouseButton1Click:Connect(function()
+    print("Accepted trade with: " .. usernameBox.Text)
 end)
 
--- Функционал кнопки Accept
-acceptButton.MouseButton1Click:Connect(function()
-    local username = textBox.Text
-    if username ~= "" then
-        print("Принято имя пользователя:", username)
-        -- Здесь можно добавить дополнительную логику обработки имени
-    else
-        print("Пожалуйста, введите имя пользователя")
-    end
+freezeBtn.MouseButton1Click:Connect(function()
+    print("Freezing trade...")
 end)

